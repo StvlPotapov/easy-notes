@@ -2,6 +2,7 @@ package com.example.easynotes.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "userauthaccount")
@@ -9,14 +10,20 @@ public class UserAuthAccount implements Serializable {
     /**
      * Идентификатор
      */
+    @Id
+    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     /**
      * Адрес вк
      */
+    @Column(name = "vkmail", nullable = false)
     private String vkmail;
     /**
      * Идентификатор из таблиы пользователей  //????????????????
      */
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User userId;
 
 
@@ -29,18 +36,15 @@ public class UserAuthAccount implements Serializable {
         this.userId = userId;
     }
 
-    @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name = "vkmail", nullable = false)
+
+    public Long getId() {
+        return id;
+    }
+
     public String getVkmail() {
         return vkmail;
     }
@@ -49,12 +53,29 @@ public class UserAuthAccount implements Serializable {
         this.vkmail = vkmail;
     }
 
-    @Column(name = "user_id", nullable = false)
+
     public User getUserId() {
         return userId;
     }
 
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserAuthAccount)) return false;
+        UserAuthAccount that = (UserAuthAccount) o;
+        return Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getVkmail(), that.getVkmail()) &&
+                Objects.equals(getUserId(), that.getUserId());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getVkmail(), getUserId());
     }
 }
