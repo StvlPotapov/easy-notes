@@ -13,24 +13,28 @@ public class User implements Serializable {
     /**
      * Идентификатор
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userID", nullable = false, updatable = false)
     private Long userId;
     /**
      * Имя пользователя
      */
+    @Column(nullable = false, updatable = false)
     private String name;
     /**
      * Фамилия пользователя
      */
+    @Column
     private String lastName;
     /**
      * номер телефона пользователя
      */
+    @Column(nullable = false)
     private String phoneNumber;
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userID", nullable = false, updatable = false)
+
     public Long getUserId() {
         return userId;
     }
@@ -40,7 +44,6 @@ public class User implements Serializable {
     }
 
 
-    @Column(nullable = false, updatable = false)
     public String getName() {
         return name;
     }
@@ -49,7 +52,6 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    @Column
     public String getLastName() {
         return lastName;
     }
@@ -58,7 +60,6 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    @Column(nullable = false)
     public String getPhoneNumber() {
         return phoneNumber;
     }
