@@ -38,6 +38,7 @@ public class UserAuthAccountController {
     }
 
 
+
     @GetMapping("/userauth/{id}")
     public ResponseEntity<UserAuthAccount> getNoteById(@PathVariable(value = "id") Long userId) {
         UserAuthAccount user = userAuthAccountRepository.getOne(userId);
