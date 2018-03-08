@@ -3,6 +3,7 @@ package com.example.easynotes.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 /*
  *(не доработано) Пользователь сервиса.
@@ -27,12 +28,13 @@ public class User implements Serializable {
      */
     @Column
     private String lastName;
+
     /**
      * номер телефона пользователя
      */
     @Column(nullable = false)
-    private String phoneNumber;
 
+    private String phoneNumber;
 
 
     public Long getUserId() {
@@ -67,4 +69,22 @@ public class User implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getUserId(), user.getUserId()) &&
+                Objects.equals(getName(), user.getName()) &&
+                Objects.equals(getLastName(), user.getLastName()) &&
+                Objects.equals(getPhoneNumber(), user.getPhoneNumber());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getUserId(), getName(), getLastName(), getPhoneNumber());
+    }
+
 }
