@@ -4,6 +4,7 @@ package com.example.easynotes.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /*
@@ -43,7 +44,21 @@ public class User implements Serializable {
     @Column(nullable = false)
     private Date dateOfBirth;
 
+    /**
+     * from UserAuthAccount
+     */
+    @Column
+    @OneToMany
+    private List<UserAuthAccount> userAuthId;
 
+
+    public List<UserAuthAccount> getUserAuthId() {
+        return userAuthId;
+    }
+
+    public void setUserAuthId(List<UserAuthAccount> userAuthId) {
+        this.userAuthId = userAuthId;
+    }
 
     public Long getUserId() {
         return userId;

@@ -57,6 +57,7 @@ public class UserController {
         user.setName(userDetails.getName());
         user.setPhoneNumber(userDetails.getPhoneNumber());
         user.setDateOfBirth(userDetails.getDateOfBirth());
+        user.setUserAuthId(userDetails.getUserAuthId());
 
         User updatedUser = userRepository.save(user);
         return updatedUser;
