@@ -3,6 +3,7 @@ package com.example.easynotes.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /*
@@ -33,8 +34,15 @@ public class User implements Serializable {
      * номер телефона пользователя
      */
     @Column(nullable = false)
-
     private String phoneNumber;
+
+    /**
+     *
+     * Дата рождения
+     */
+    @Column(nullable = false)
+    private Date dateOfBirth;
+
 
 
     public Long getUserId() {
@@ -70,6 +78,14 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,5 +102,4 @@ public class User implements Serializable {
 
         return Objects.hash(getUserId(), getName(), getLastName(), getPhoneNumber());
     }
-
 }
