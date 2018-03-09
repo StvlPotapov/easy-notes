@@ -19,6 +19,12 @@ public class UserAuthAccount implements Serializable {
      */
     @Column(name = "vkmail", nullable = false)
     private String vkmail;
+
+    /**
+     * Номер пользователя
+     */
+    @Column
+    private String phoneNumber;
     /**
      * Идентификатор из таблиы пользователей  //????????????????
      */
@@ -77,5 +83,13 @@ public class UserAuthAccount implements Serializable {
     public int hashCode() {
 
         return Objects.hash(getId(), getVkmail(), getUserId());
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
