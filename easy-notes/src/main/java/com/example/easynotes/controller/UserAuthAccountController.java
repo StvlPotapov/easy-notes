@@ -58,6 +58,7 @@ public class UserAuthAccountController {
                 .orElseThrow(() -> new ResourceNotFoundException("UserAuthAcc", "id", id));
 
         userAuthAccount.setVkmail(userDetail.getVkmail());
+        userAuthAccount.setPhoneNumber(userDetail.getPhoneNumber());
         UserAuthAccount updateUserAuth = userAuthAccountRepository.save(userAuthAccount);
         return updateUserAuth;
     }
